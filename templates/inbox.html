@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Inbox
+{% endblock %}
+
+{% block main %}
+    <div class="col">
+        <h2 class="text-center mb-3">Your messages</h2>
+        <div class="container">
+            {% for message in messages %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p class="card-text">{{message["message"]}}</p>
+                    <span><small class="text-secondary">From: <a href="users/{{message['sender']}}">{{message["sender"]}}</a> - {{message["datetime"]}}</small></span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

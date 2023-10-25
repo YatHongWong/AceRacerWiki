@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Hello, {{username}}
+{% endblock %}
+
+{% block main %}
+<div class="d-flex flex-row">
+    <div class="container">
+        <div class="d-flex flex-column">
+            <div class="card mb-3">
+                <div class="card-header">
+                    Account summary
+                </div>
+                <div class="card-body">
+                    <p class="card-text mb-0">username: {{username}}</p>
+                        {% if admin == 1 %}
+                        <p class="card-text mb-0">level: <span class="fw-bold text-danger">Administrator</span></p>
+                        {% elif admin == 2%}
+                        <p class="card-text mb-0">level: <span class="fw-bold text-info">Trusted</span></p>
+                        {% else %}
+                        <p class="card-text mb-0">level: <span class="fw-bold">Member</span></p>
+                        {% endif %}
+                    <p class="card-text mb-0">uid: {{id}}</p>
+                    <p class="card-text mb-0">Edits: {{num_edits}}</p>
+                    <p class="card-text">Comments: {{num_comments}}</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    Actions
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li><a href="/logout">Logout</a></li>
+                        <li><a href="/changepass">Change Password</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Your comments
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    {% for row in user_comments %}
+                    <li class="list-group-item">
+                        <div class="container">
+                            <p>
+                                {{ row["comment"] }}
+                                <br>
+                                <small class="text-secondary">in: {{ row["item"] }}</small>
+                            </p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

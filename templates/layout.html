@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ace Racer: {% block title %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="/static/styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="/static/images/AceRacerLogo.png" alt="Logo" width="62" height="30" class="d-inline-block align-text-top">
+                Ace Racer Wiki
+            </a>
+            <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Cars
+                            </a>
+                            <ul class="dropdown-menu">
+                              {% for car in cars %}
+                              <li>
+                                  <a class="dropdown-item" href="/cars/{{car}}">{{car}}</a>
+                              </li>
+                              {% endfor %}
+                            </ul>
+                          </li>                  
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Maps
+                            </a>
+                            <ul class="dropdown-menu">
+                              {% for map in maps %}
+                              <li>
+                                  <a class="dropdown-item" href="/maps/{{map}}">{{map}}</a>
+                              </li>
+                              {% endfor %}
+                            </ul>
+                          </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              ECUs
+                            </a>
+                            <ul class="dropdown-menu">
+                              {% for ecu in ecus %}
+                              <li>
+                                  <a class="dropdown-item" href="/ecus/{{ecu}}">{{ecu}}</a>
+                              </li>
+                              {% endfor %}
+                            </ul>
+                          </li>
+                      <li class="nav-item">
+                        <form action="/search" method="POST" class="d-flex" role="search">
+                          <input name="search" class="form-control mx-2" type="search" placeholder="Search" required>
+                          <button class="btn btn-outline-light" type="submit">Search</button>
+                        </form>
+                      </li>                         
+                    </ul>
+                    <ul class="navbar-nav ms-auto mt-2">
+                        {% if session["user_id"] %}
+                        <li class="nav-item">
+                          <a class="nav-link" href="/message">Message</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="/inbox">Inbox</a>
+                        </li>
+                        {% else %}
+                        {% endif %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Account
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% if session["user_id"] %}
+                                    <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+                                    <li><a class="dropdown-item" href="/logout">Log Out</a></li>
+                                {% else %}
+                                    <li><a class="dropdown-item" href="/login">Log In</a></li>
+                                    <li><a class="dropdown-item" href="/register">Register</a></li>
+                                {% endif %}
+                            </ul>
+                          </li> 
+                    </ul>
+                </div>
+        </div>     
+    </nav>
+
+    <main class="container-fluid py-3">
+        {% for message in get_flashed_messages() %}
+          <div class="alert alert-info alert-dismissible fade show" role="alert">        
+            <div>
+              {{message}}
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          
+        {% endfor %}
+        {% block main %}
+        {% endblock %}
+    </main>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    All Information
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col">
+            <p>Cars</p>
+            <ul>
+                {% for car in cars %}
+                    <li><a href="cars/{{car}}">{{car}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col">
+            <p>Maps</p>
+            <ul>
+                {% for map in maps %}
+                    <li><a href="maps/{{map}}">{{map}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col">
+            <p>ECUs</p>
+            <ul>
+                {% for ecu in ecus %}
+                    <li><a href="ecus/{{ecu}}">{{ecu}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

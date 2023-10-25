@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{item}} ({{section.upper()}})
+{% endblock %}
+
+{% block main %}
+<div class="box_verticle">
+    {{ ckeditor.load(custom_url=url_for('static', filename='ckeditor/ckeditor.js')) }}
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">{{item}}</h2>
+                <form id="submit_edit" method="POST" action="/editing">
+                    <input type="hidden" name="item" value="{{item}}">
+                    <input type="hidden" name="section" value="{{section}}">
+                    {{ ckeditor.create(value=article_body) }}
+                    {{ ckeditor.config(height=600) }}
+                </form>
+            </div>
+            <div class="card-footer">
+                <input form="submit_edit" class="btn btn-primary" type="submit" value="Save changes">
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+
+{% endblock %}

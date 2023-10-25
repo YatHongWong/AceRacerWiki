@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{name}}
+{% endblock %}
+
+{% block main %}
+
+{% if admin == 1 %}
+<form id="levelchange" action="/levelchange" method="POST">
+    <input type="hidden" name="username" value="{{name}}">
+    <input type="hidden" name="level" value="{{level}}">
+</form>
+{% endif %}
+
+<div class="container-sm">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                        <h2 class="card-title {{color}}">{{name}}<a class="btn btn-primary btn-sm ms-2" href="/messagepreset/{{name}}">message</a></h2>
+                    <span class="card-text">uid: {{uid}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">level: <span class="fw-bold {{color}}">{{is_admin}}</span>
+                        {% if admin == 1 %}
+                            {% if level == 2 %}
+                                <input type="submit" form="levelchange" class="btn btn-sm btn-primary ms-1" value="Demote">
+                            {% elif level == 0 %}
+                                <input type="submit" form="levelchange" class="btn btn-sm btn-primary ms-1" value="Promote">
+                            {% endif %}
+                        {% endif %}
+                        <br>
+                        edits: {{num_edits}}<br>
+                        comments: {{num_comments}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Users list
+{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header text-danger fw-bold">Administrators</div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    {% for user in admins %}
+                    <li class="list-group-item">
+                        <a class="link-danger" href="/users/{{ user }}">{{user}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-header text-info fw-bold">Trusted Members</div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    {% for user in trusted %}
+                    <li class="list-group-item">
+                        <a class="link-info" href="/users/{{ user }}">{{user}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-header fw-bold">Members</div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    {% for user in members %}
+                    <li class="list-group-item">
+                        <a class="link-secondary" href="/users/{{ user }}">{{user}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

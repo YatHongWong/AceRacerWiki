@@ -1,0 +1,23 @@
+/* Style dropdown menus and allow scrolling */
+.dropdown-menu{
+    max-height: 500px;
+    overflow: auto;
+}
+
+/* Hide scrollbars */
+.dropdown-menu::-webkit-scrollbar {
+  display: none;
+}
+  
+.dropdown-menu {
+  -ms-overflow-style: none;  
+  scrollbar-width: none; 
+} 
+
+textarea {
+  height: 100px
+}
+
+a {
+  text-decoration: none;
+}

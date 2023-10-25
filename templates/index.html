@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="container">
+            <div class="card mb-3">
+                <div class="card-header">
+                    Welcome to Ace Racer Wiki!
+                </div>
+                <div class="card-body">
+                    <p>You can start by looking at what information we have: <a href="/list">index</a>
+                    <br>If you want to edit anything, please send a message to an <span class="fw-bold text-danger">administrator</span>.
+                    <br>You will require <span class="fw-bold text-info">trusted member</span> status to edit.</p>
+                    <span>Administrators:</span>
+                    <ul>
+                        {% for admin in admins %}
+                        <li><a class="link-danger userlink" href="/users/{{admin}}">{{admin}}</a> [<a class="userlink" href="/messagepreset/{{admin}}">message</a>]</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="card">
+                            <div class="card-header">
+                                About Ace Racer
+                            </div>
+                            <div class="card-body">
+                                <img src="/static/images/AceRacerAppLogo.jpg" class="rounded float-end ms-3" alt="Ace racer app logo">
+                                <h4 class="card-title">Summary</h4>
+                                <p class="card-text">Ace Racer is an online free-to-play racing game developed and published by NetEase Games and is available for IOS and Android. It was released globally on the 16th of March 2023.</p>
+                                <h4 class="card-title">Gameplay</h4>
+                                <p class="card-text">Ace Racer features an arcade racing gameplay. Its most unique features are the inclusion of car abilities, and class-based team gameplay. In this game players must work together in teams of 3, there are 3 classes of cars: speedster, interceptor, supporter. Each class has different abilities (ultimates). The speedster class ultimates are focused on increasing its own speed, trying to get first place. The interceptor class ultimates are focused on annoying the enemy cars, slowing them down. The supporter class ultimates are focused on providing ultimate charge to teammates and increasing their speed.</p>
+                                <p class="card-text">There are a huge variety of <a href="/list">cars</a> in Ace Racer, some are fictional - designed by the Ace Racer team, and some are real and licensed brands.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card">
+                            <div class="card-header">
+                                Website Statistics  
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text"><span class="fw-bold">{{num_users}}</span> <a href="/users">users</a>
+                                <br><span class="fw-bold">{{num_edits}}</span> edits
+                                <br><span class="fw-bold">{{num_comments}}</span> comments
+                                <br><a href="/users/{{new_user}}" class="{{colour}}">{{new_user}}</a> is the newest user.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+{% endblock %}

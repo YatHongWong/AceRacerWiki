@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search Results
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="card w-50 mx-auto">
+        <div class="card-header">
+            Search Results
+        </div>
+        <div class="card-body">
+            <p class="card-header">Cars</p>
+            <ul class="list-group list-group-flush">
+                {% for car in cars_search %}
+                    {% if car == "No matches" %}
+                    <li class="list-group-item">
+                        No Matches
+                    </li>
+                    {% else %}
+                    <li class="list-group-item">
+                        <a href="/cars/{{ car }}">{{car}}</a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <p class="card-header">Maps</p>
+            <ul class="list-group list-group-flush">
+                {% for map in maps_search %}
+                    {% if map == "No matches" %}
+                    <li class="list-group-item">
+                        No Matches
+                    </li>
+                    {% else %}
+                    <li class="list-group-item">
+                        <a href="/maps/{{ map }}">{{map}}</a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <p class="card-header">ECUS</p>
+            <ul class="list-group list-group-flush">
+                {% for ecu in ecus_search %}
+                    {% if ecu == "No matches" %}
+                    <li class="list-group-item">
+                        No Matches
+                    </li>
+                    {% else %}
+                    <li class="list-group-item">
+                        <a href="/ecus/{{ ecu }}">{{ecu}}</a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <p class="card-header">Users</p>
+            <ul class="list-group list-group-flush">
+                {% for user in users_search %}
+                    {% if user == "No matches" %}
+                    <li class="list-group-item">
+                        No Matches
+                    </li>
+                    {% else %}
+                    <li class="list-group-item">
+                        <a href="/users/{{ user }}">{{user}}</a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+    
+{% endblock %}

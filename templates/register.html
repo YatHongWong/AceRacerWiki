@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <div class="container-sm">
+        <div class="card mx-auto w-50">
+            <div class="card-body">
+                <form action="/register" method="POST">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input autocomplete="off" class="form-control" autofocus id="username" name="username" type="text" required>
+                        <label for="password" class="form-label">Password</label>
+                        <input autocomplete="off" id="password" class="form-control" name="password" type="password" required>
+                        <label for="confirmation_password" class="form-label">Confirm Password</label>
+                        <input autocomplete="off" id="confirmation_password" class="form-control" name="confirmation_password" type="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

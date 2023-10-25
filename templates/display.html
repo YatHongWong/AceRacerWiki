@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{item}} ({{section.upper()}})
+{% endblock %}
+
+{% block main %}
+<div class="col">
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title display-1"><b>{{item}}</b></h1>
+                {{article_body|safe}}
+            </div>
+            <div class="card-footer">
+                <form method="post" action="/edit">
+                    <input type="hidden" name="item" value="{{item}}">
+                    <input type="hidden" name="section" value="{{section}}">
+                    <input type="hidden" name="article_body" value="{{article_body}}">
+                    <input class="btn btn-secondary" type="submit" value="Edit this post">
+                </form>
+                <span><small class="text-secondary">{{editor|safe}}</small></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-3">
+        <div class="card">
+            <div class="card-body">
+                <form class="form" id="comment_form" method="post" action="/comment">
+                    <input type="hidden" name="item" value="{{item}}">
+                    <input type="hidden" name="section" value="{{section}}">
+                    <textarea class="form-control" name="comment" form="comment_form" rows="2" cols="25" placeholder="Type your comment here." required></textarea>
+                </form>
+            </div>
+            <div class="card-footer">
+                <input class="btn btn-secondary" type="submit" value="comment" form="comment_form">
+            </div>
+        </div>
+    </div>
+        <div class="container mb-3">
+            <h3>Comments</h3>
+        </div>
+        {% for row in comments %}
+        <div class="container mb-3">
+            <div class="card"> 
+                <div class="card-body">
+                    <p class="card-text">{{row["comment"]}}</p>
+                    <p class="text-end card-text"><small class="text-secondary">From <a href="/users/{{row['username']}}">{{row["username"]}}</a></small></p>
+                </div>
+                {% if admin == 1 %}
+                <div class="card-footer">
+                    <form action="/delete" method="POST">
+                        <input type="hidden" name="item" value="{{item}}">
+                        <input type="hidden" name="section" value="{{section}}">
+                        <input type="hidden" name="id" value="{{row['id']}}">
+                        <input type="submit" class="btn btn-secondary" value="Remove comment"> 
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+</div>
+
+
+{% endblock %}

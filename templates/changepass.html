@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Change Password
+{% endblock %}
+
+{% block main %}
+    <div class="container-sm">
+        <div class="card">
+            <div class="card-body">
+                <form action="/changepass" method="POST">
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Current Password</label>
+                        <input autofocus autocomplete="off" id="password" class="form-control" name="password" type="password" required>
+                        <label for="new_password" class="form-label">New Password</label>
+                        <input autocomplete="off" id="new_password" class="form-control" name="new_password" type="password" required>
+                        <label for="confirmation_password" class="form-label">Confirm New Password</label>
+                        <input autocomplete="off" id="confirmation_password" class="form-control" name="confirmation_password" type="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Change Password</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

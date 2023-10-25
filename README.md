@@ -94,8 +94,7 @@ Allows for user login
 Allows user registration, passwords will be hashed and put into the db along with the username.
 
 #### Display
-'''html
-/<section>/<item>''' Displays the article of selected item, including comments and the last editor of the article.
+Displays the article of selected item, including comments and the last editor of the article.
 
 #### Dashboard
 Shows an account summary, includes the user's number of edits, comments and level. There is also a list of all the user's comments with where it was commented. The Dashboard also allows the user to change password and log out.
@@ -104,8 +103,7 @@ Shows an account summary, includes the user's number of edits, comments and leve
 Allows user to change password.
 
 #### Profile
-'''html
-/users/<username>''' Displays profile which has the user's number of edits, comments and the user's level. Admins will have a red name, Trusted members will have a blue name and normal users will have a grey name.
+Displays profile which has the user's number of edits, comments and the user's level. Admins will have a red name, Trusted members will have a blue name and normal users will have a grey name.
 There is a message button to message this user. Administrators will see a Demote/Promote button which is used to give or take away trusted level.
 
 #### Message
